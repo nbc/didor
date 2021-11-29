@@ -59,5 +59,6 @@ See
 
 -   the [Tutorial](articles/premiers_pas.html) for more information and
     examples.
--   An [example](articles/drawing_energie.html) for more information and
+-   An [how to get data for graph with
+    didor](articles/drawing_energie.html) for more information and
     examples.

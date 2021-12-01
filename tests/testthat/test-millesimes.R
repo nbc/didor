@@ -52,7 +52,10 @@ test_that("columns works", {
 })
 
 test_that("columns() stop if multiple millesimes per datafiles", {
-  expect_error(datafiles() %>% millesimes() %>% columns(), "include more than one millesime")
+  expect_error(datafiles() %>%
+                 millesimes() %>%
+                 columns(),
+               "include more than one millesime")
 })
 
 test_that("columns() stop if wrong input data", {

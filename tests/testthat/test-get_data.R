@@ -5,7 +5,11 @@ test_that("get_data work with last_millesime input", {
 
   get_metadata()
 
-  data <- datasets() %>% datafiles() %>% last_millesime() %>% arrange(rows) %>% slice_head()
+  data <- datasets() %>%
+    datafiles() %>%
+    last_millesime() %>%
+    arrange(rows) %>%
+    slice_head()
   nb_of_rows <- data[["rows"]]
   result <- get_data(data)
 
@@ -18,7 +22,11 @@ test_that("get_data work with datafiles input", {
 
   get_metadata()
 
-  data <- datasets() %>% datafiles() %>% last_millesime() %>% arrange(rows) %>% slice_head()
+  data <- datasets() %>%
+    datafiles() %>%
+    last_millesime() %>%
+    arrange(rows) %>%
+    slice_head()
   nb_of_rows <- data[["rows"]]
   result <- get_data(data %>% select(rid))
 

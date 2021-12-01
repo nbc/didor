@@ -22,8 +22,7 @@ download_attachment <- function(url, dest = NULL) {
   file_name <- strsplit(content_disposition, '"')[[1]][2]
   if (!is.null(dest)) file_name <- paste0(dest, "/", file_name)
 
-  tryCatch(
-    {
+  tryCatch({
       filehandle <- file(file_name, "wb")
       writeBin(httr::content(attachment), filehandle)
     },
@@ -34,6 +33,6 @@ download_attachment <- function(url, dest = NULL) {
       close(filehandle)
     }
   )
-  message(paste0("file downloaded: ", file_name ))
+  message(paste0("file downloaded: ", file_name))
   invisible(TRUE)
 }

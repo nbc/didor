@@ -2,7 +2,8 @@
 #'
 #' Get the data of the last millesime of all the datafiles found in data
 #'
-#' @param data a tibble issued from `datafiles() or a dataframe with two columns `rid` and `millesime`.
+#' @param data a tibble issued from `datafiles() or a dataframe with two
+#'        columns `rid` and `millesime`.
 #' @param query a query to pass to the API to select columns and filter on
 #'        values.
 #' @param concat `TRUE`
@@ -28,7 +29,7 @@
 #' # get only rows where `DEPARTEMENT_CODE == 971
 #' datafiles() %>%
 #'   dido_search("drom") %>%
-#'   get_data(query = c(DEPARTEMENT_CODE= "eq:971"))
+#'   get_data(query = c(DEPARTEMENT_CODE = "eq:971"))
 #' @importFrom magrittr %>%
 #' @importFrom dplyr bind_rows select
 #' @importFrom purrr pmap

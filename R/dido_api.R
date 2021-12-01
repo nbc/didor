@@ -90,5 +90,3 @@ get_csv <- function(rid,
     col_types = col_types, na = na
   ))
 }
-
-

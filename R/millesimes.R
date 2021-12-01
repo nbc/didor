@@ -6,7 +6,9 @@
 #' @export
 #'
 #' @examples
-#' datafiles() %>% dido_search("drom") %>% millesimes()
+#' datafiles() %>%
+#'   dido_search("drom") %>%
+#'   millesimes()
 millesimes <- function(data) {
   if (missing(data)) {
     stop("`millesimes()` need an argument")
@@ -64,15 +66,20 @@ columns <- function(data) {
   }
   message(paste0("nb of datafiles: ", nrow(mill)))
 
-  mill %>%
+  columns <- mill %>%
     select(.data$columns) %>%
-    unnest(.data$columns) %>%
-    # as_tibble() %>%
+    unnest(.data$columns)
+
+  if (!"format" %in% names(columns)) {
+    columns <- mutate(columns, format = NA_character_) %>%
+      relocate(format, .after = .data$type)
+  }
+
+  columns %>%
     count(.data$name,
       .data$description,
-      # TODO: uncomment when new API is released
-      # .data$type,
-      # .data$format,
+      .data$type,
+      .data$format,
       .data$unit,
       name = "nb of occurrences"
     )

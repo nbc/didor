@@ -12,7 +12,9 @@
 #' @export
 #'
 #' @examples
-#' # get_metadata("datasets.json")
+#' \dontrun{
+#' get_metadata("datasets.json")
+#' }
 #' @import tidyr
 #' @import dplyr
 #' @import tibble

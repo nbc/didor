@@ -1,6 +1,8 @@
 get_metadata("datasets.json")
 
-test_that("last_millesimes works when multiple millesimes", {
+# last_millesime
+
+test_that("last_millesime works when multiple millesimes", {
   last <- datafiles() %>%
     filter(rid == "49b4b29b-3d0b-43bb-879d-244aeceb876f") %>%
     last_millesime()
@@ -34,6 +36,8 @@ test_that("last_millesime() stop if wrong input data", {
   expect_error(c(11, 22) %>% last_millesime(), "data must be a dataframe")
 })
 
+# columns
+
 test_that("columns works", {
   expect_message(col <- datafiles() %>%
     filter(id == "618cfa72aac4a70022253bbb") %>%
@@ -65,4 +69,25 @@ test_that("columns() stop if multiple millesimes per datafiles", {
 test_that("columns() stop if wrong input data", {
   expect_error(tibble() %>% columns(), "data must have")
   expect_error(c(11, 22) %>% columns(), "data must be a dataframe")
+})
+
+# millesimes
+
+test_that("millesime fails if error", {
+  expect_error(millesimes(), "need an argument")
+  expect_error(millesimes(c(1,2,3)), "must be a dataframe")
+
+  data <- tibble(row = c(1,2,3))
+  expect_error(millesimes(data), "`rid` column")
+})
+
+test_that("millesime works", {
+  millesimes <- datafiles() %>%
+    filter(rid == "49b4b29b-3d0b-43bb-879d-244aeceb876f") %>%
+    millesimes()
+
+  expect_equal(names(millesimes),
+               c("rid", "id", "millesime", "date_diffusion", "rows",
+                 "columns", "extendedFilters", "geoFields", "refs"))
+  expect_equal(nrow(millesimes), 2)
 })

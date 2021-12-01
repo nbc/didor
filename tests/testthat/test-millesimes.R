@@ -37,13 +37,17 @@ test_that("last_millesime() stop if wrong input data", {
 test_that("columns works", {
   expect_message(col <- datafiles() %>%
     filter(id == "618cfa72aac4a70022253bbb") %>%
-    columns(), "datafiles: 4")
+    columns() %>%
+    replace_na(list(format = "-")),
+    "datafiles: 4")
 
   expect_equal(nrow(col), 3)
 
   result <- tibble(
     name = c("CONSO", "ENERGIE", "PRODUCTEUR"),
     description = c("consommation", "energie (gaz, électricité)", "producteur"),
+    type = c("number", "string", "string"),
+    format = c("-", "-", "-"),
     unit = c("MW/h", "n/a", "n/a"),
     `nb of occurrences` = c(4, 4, 4)
   )

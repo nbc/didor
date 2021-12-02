@@ -21,8 +21,13 @@ millesimes <- function(data) {
   }
   dido_ml <- load_dido_metadata("dido_ml")
 
-  select(data, "rid") %>%
-    inner_join(dido_ml, by = c("rid")) %>%
+  join_by <- c("rid")
+  if ("millesime" %in% names(data)) {
+    join_by <- append(join_by, "millesime")
+  }
+
+  select(data, unlist(join_by)) %>%
+    inner_join(dido_ml, by = join_by) %>%
     distinct()
 }
 

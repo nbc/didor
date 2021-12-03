@@ -1,4 +1,3 @@
-
 test_that("get_data works with last_millesime input", {
   skip_on_cran()
   skip_if_offline()
@@ -14,6 +13,11 @@ test_that("get_data works with last_millesime input", {
   result <- get_data(data)
 
   expect_equal(nb_of_rows, nrow(result))
+
+  for (col in names(result)) {
+    expect_named(attributes(result[[col]]), c("description", "unit", "type"))
+  }
+
 })
 
 test_that("get_data works with datafiles input", {
@@ -47,6 +51,11 @@ test_that("get_data works with concat FALSE", {
   result <- get_data(data %>% select(rid), concat = FALSE)
 
   expect_output(str(result), "List of 1")
+
+  for (col in names(result[[1]])) {
+    expect_named(attributes(result[[1]][[col]]), c("description", "unit", "type"))
+  }
+
 })
 
 test_that("get_data returns NULL or list() when feeded empty tibble", {

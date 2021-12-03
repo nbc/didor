@@ -47,7 +47,13 @@ get_data <- function(data,
   if (!"rid" %in% names(data)) {
     stop("data must have an `rid` column.", call. = FALSE)
   }
-
+  if (nrow(data) == 0) {
+    if (concat) {
+      return(NULL)
+    } else {
+      return(list())
+    }
+  }
   if (!"millesime" %in% names(data)) {
     mill <- last_millesime(data)
   } else {

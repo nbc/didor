@@ -49,7 +49,7 @@ test_that("get_data works with concat FALSE", {
   expect_output(str(result), "List of 1")
 })
 
-test_that("get_data works when no feeded empty tibble", {
+test_that("get_data returns NULL or list() when feeded empty tibble", {
   skip_on_cran()
   skip_if_offline()
 
@@ -57,9 +57,11 @@ test_that("get_data works when no feeded empty tibble", {
 
   data <- datafiles() %>%
     dido_search("no such string will ever exists")
-  result <- get_data(data %>% select(rid), concat = FALSE)
+  result_not_concat <- get_data(data %>% select(rid), concat = FALSE)
+  result_concat <- get_data(data %>% select(rid))
 
-  expect_output(str(result), "list()")
+  expect_output(str(result_not_concat), "list()")
+  expect_equal(result_concat, NULL)
 })
 
 test_that("get_data fail", {

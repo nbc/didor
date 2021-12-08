@@ -3,6 +3,10 @@ DiDo R package
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+**This project has moved to is [new
+home](https://github.com/MTES-MCT/didor). You can find the new
+documentation on <https://mtes-mct.github.io/didor/>**
+
 # DiDoR
 
 <!-- badges: start -->

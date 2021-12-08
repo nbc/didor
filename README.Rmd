@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+**This project has moved to is [new home](https://github.com/MTES-MCT/didor). You can find the new documentation on https://mtes-mct.github.io/didor/**
+
 # DiDoR
 
 <!-- badges: start -->
